@@ -1,0 +1,28 @@
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+	outline: none;
+	padding: 1rem 2rem 1rem 3.5rem;
+	border: 1px solid $grey-lighten-2;
+	width: 100%;
+	@include border-radius( 3px );
+}
+
+.search {
+	position: relative;
+
+	&:before {
+		content: '\e8b6';
+		font-family: 'Material Icons';
+		font-size: 2rem;
+		left: 1rem;
+		position: absolute;
+		@include vertical-align( absolute );
+	}
+}

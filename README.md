@@ -1,13 +1,17 @@
 # Elucidat PHP/JS code test
 
-This test is intended for developers looking to work with Elucidat.
+# Installation
 
-It covers PHP and Javascript.
+Create a local version of the site then run:
 
-Install by uploading to a web server (or Mamp/Wamp) and pointing the home directory to public_html/
+```
+npm install
+```
 
-Then open in a browser - and you'll find the test instructions.
+Then run gulp"
+```
+gulp
+```
 
-You'll be here because you've been invited to take the test - but if you've found your own way here - have a go - we'd love to see what you do (and we are always looking for great developers).
+Then go!
 
-Depending on your platform, there may be some problems running this code out of the box. If that stops you - this probably isn't going to work out...

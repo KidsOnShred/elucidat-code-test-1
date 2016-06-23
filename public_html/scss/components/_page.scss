@@ -1,0 +1,19 @@
+.page {
+	background: $grey-lighten-3;
+	margin-bottom: 3rem;
+	padding: 2rem;
+	text-align: center;
+	@include box-shadow();
+
+	figure {
+		width: 8rem;
+		height: 8rem;
+		margin: 1rem auto;
+		overflow: hidden;
+		@include border-radius( 50% );
+
+		img {
+			height: 100%;
+		}
+	}
+}

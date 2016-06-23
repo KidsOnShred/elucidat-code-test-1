@@ -17,11 +17,12 @@ class Page_model extends CI_Model
     /**
      * Return all pages within a course
      * 
-     * @return  null
+     * @return  array of pages
      */
-    public function get_pages () 
+    public function get_pages ( $filters = [] ) 
     {
-        return array(
+
+        $pages = array(
                 array(
                     'name' => 'Fraud protection',
                     'page_code' => '54e76dd06520a',
@@ -212,6 +213,53 @@ class Page_model extends CI_Model
                     'grab' => 'https://625621aac04f19ed1a54-078d139490598a4fe778648eda3bc29b.ssl.cf3.rackcdn.com/547c4b99ec2aa_text_and_images__image_left.png'
                 )
             );
+    
+        // Quick hack to filter by a variety of parameters
+        // Normally we would filter using active query
+        $pages = array_filter( $pages, function( $page ) use( $filters ) {
+            
+            // Cycle our filters
+            foreach ($filters as $filter ) {
+                $attribute = strtolower( $page[$filter->attribute] );
+                $value = strtolower( $filter->value );
+
+                // Choose our operand
+                switch ( $filter->operand ) {
+                    
+                    case 'contains':
+                        if ( substr_count( $attribute, $value ) == 0 ) {
+                            return false;
+                        }
+                        break;
+
+                    case '!contains':
+                        if ( substr_count( $attribute, $value ) > 0 ) {
+                            return false;
+                        }
+                        break;
+
+                    case 'is':
+                        if ( $attribute == $value ) {
+                            return false;
+                        }
+                        break;
+
+                    case '!is':
+                        if ( $attribute != $value ) {
+                            return false;
+                        }
+                        break;
+
+                    //... more filters go here
+                }
+
+            }
+
+            return true;
+        });
+        
+        // Fix index and return
+        return array_values( $pages );
 
     }
 }

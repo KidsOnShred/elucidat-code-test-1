@@ -1,0 +1,21 @@
+.node {
+    cursor: pointer;
+	
+	circle {
+	    fill: #fff;
+	    stroke: steelblue;
+	    stroke-width: 1.5px;
+	}
+	rect {
+		@include box-shadow();
+	}
+	text {
+    	font-size: 1.4rem;
+	}
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+}
