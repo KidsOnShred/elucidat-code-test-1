@@ -64,10 +64,10 @@ elucidatApp.controller('PagesController', function ($scope, ApiService) {
 
 	        // Successful promise resolve
 	        .then( function( data ) {
-	        	console.log( data );
+
 	            if ( !_.isEmpty( data ) ) {
 	            	$scope.page = linkChildren( data[0], $scope.pages );
-	            	console.log($scope.page);
+
 					drawHierarchy();
 				}
 
@@ -89,13 +89,13 @@ elucidatApp.controller('PagesController', function ($scope, ApiService) {
 
 		var i = 0,
 			duration = 750,
-			rectW = 160,
-			rectH = 120,
+			rectW = 80,
+			rectH = 80,
 			layoutX = width / 2,
 			layoutY = 20;
 
 		// Set the tree size
-		var tree = d3.layout.tree().nodeSize([300, 40]);
+		var tree = d3.layout.tree().nodeSize([20, 40]);
 			
 		var diagonal = d3.svg.diagonal()
 			.projection(function(d) {
@@ -124,14 +124,12 @@ elucidatApp.controller('PagesController', function ($scope, ApiService) {
 			update(root);
 
 			function update(source) {
-
 			  // Compute the new tree layout.
 			  var nodes = tree.nodes(root).reverse(),
 			    links = tree.links(nodes);
-
 			  // Normalize for fixed-depth.
 			  nodes.forEach(function(d) {
-			    d.y = d.depth * 180;
+			    d.y = d.depth * ( rectH + 20 ) ;
 			  });
 
 			  // Update the nodes…

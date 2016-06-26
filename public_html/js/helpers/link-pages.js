@@ -1,21 +1,25 @@
+/**
+ * function linkChildren
+ * Recursive function which turns page childrens from strings into objects
+ * @param object page the root page
+ * @param array pages, the array of pages indexed by page_code
+ */
 function linkChildren( page, pages ) {
-
 	if ( !_.isUndefined( page ) ) {
-		_.each( page.children, function( value, index, obj ) {
-			console.log( pages );
-			console.log( value );
-			console.log( pages[value] );
-			console.log( '' );
-			if ( !_.isUndefined( pages[value] ) ) {
-				// If its an object its already been linked
-				if ( !_.isObject( page.children[index] ) ) {
+		_.each( page.children, function( value, index ) {
+			// If the page is still a string
+			if ( !_.isObject( value ) ) {
+				// Make sure the string links to an index
+				if ( !_.isUndefined( pages[value] ) && !_.isEmpty( pages[value] ) ) {
+					// Set to object
 					page.children[index] = pages[value];
-					page.children[index] = linkChildren(page.children[index], pages );
+					// Find new child's children
+					linkChildren( page.children[index], pages );
+				// If it doesn't delete it
+				} else {
+					page.children.splice( index );
 				}
-			} else {
-				page.children.splice( index );
 			}
-
 		});
 	}
 
