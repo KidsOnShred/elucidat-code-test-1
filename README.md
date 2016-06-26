@@ -2,13 +2,17 @@
 
 # Installation
 
-Create a local version of the site then run:
+1. Create a local version of the site then run:
 
 ```
 npm install
-```
 
-Then run gulp"
+```
+2. Navigate to public_html
+
+
+3. Run gulp
+
 ```
 gulp
 ```
